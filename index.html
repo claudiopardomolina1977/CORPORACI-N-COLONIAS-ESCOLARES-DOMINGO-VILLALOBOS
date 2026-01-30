@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Corporación Colonias Escolares Domingo Villalobos — Ayuda en tiempos de crisis</title>
+  <meta name="description" content="Desde 1911 organizamos colonias escolares y apoyamos a niños, niñas y jóvenes en situación de vulneración. Dona y sé parte." />
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#111833;
+      --muted:#a9b3d1;
+      --text:#eef2ff;
+      --accent:#5eead4;
+      --accent2:#60a5fa;
+      --danger:#fb7185;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1100px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(96,165,250,.18), transparent 60%),
+        radial-gradient(1200px 600px at 85% 10%, rgba(94,234,212,.14), transparent 60%),
+        linear-gradient(180deg, #070a14, var(--bg));
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px;}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,20,.65);
+      border-bottom:1px solid var(--border);
+    }
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0;}
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+    .logo{
+      width:40px; height:40px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(96,165,250,.95), rgba(94,234,212,.95));
+      box-shadow: var(--shadow);
+    }
+    .brand strong{display:block; font-size:14px; letter-spacing:.2px}
+    .brand span{display:block; font-size:12px; color:var(--muted)}
+    .links{display:flex; gap:14px; flex-wrap:wrap; align-items:center; justify-content:flex-end}
+    .links a{
+      font-size:13px; text-decoration:none;
+      color:var(--muted);
+      padding:8px 10px; border-radius:12px;
+      border:1px solid transparent;
+    }
+    .links a:hover{border-color:var(--border); color:var(--text)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px; border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      text-decoration:none;
+      cursor:pointer;
+      transition: transform .06s ease, background .2s ease;
+      font-weight:650;
+    }
+    .btn:hover{background: rgba(255,255,255,.10)}
+    .btn:active{transform: translateY(1px)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(96,165,250,.95), rgba(94,234,212,.95));
+      border-color: transparent;
+      color:#071022;
+    }
+    .btn.danger{
+      background: rgba(251,113,133,.14);
+      border-color: rgba(251,113,133,.35);
+      color: #ffd0d7;
+    }
+    .hero{padding:44px 0 20px;}
+    .hero-grid{
+      display:grid; grid-template-columns: 1.15fr .85fr; gap:22px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns:1fr; }
+      .links{display:none}
+    }
+    .hcard{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding:26px;
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:12px; color:var(--muted);
+      padding:6px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    h1{margin:14px 0 10px; font-size:34px; line-height:1.1; letter-spacing:-.4px;}
+    .lead{color:var(--muted); font-size:15px; line-height:1.6; margin:0 0 18px;}
+    .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .badge{
+      font-size:12px; color:var(--muted);
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    .grid{
+      display:grid; gap:14px;
+      grid-template-columns: 1fr 1fr;
+    }
+    .card{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding:18px;
+    }
+    .card h3{margin:0 0 8px; font-size:14px}
+    .card p{margin:0; color:var(--muted); font-size:13px; line-height:1.55}
+    .section{padding:28px 0}
+    .section h2{margin:0 0 10px; font-size:22px; letter-spacing:-.2px}
+    .section p{margin:0 0 16px; color:var(--muted); line-height:1.65}
+    .cols{
+      display:grid; gap:16px;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media (max-width: 900px){
+      .cols{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+    }
+    .list{margin:0; padding-left:18px; color:var(--muted); line-height:1.75}
+    .impact{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 900px){ .impact{grid-template-columns:1fr} }
+    .metric{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding:18px;
+    }
+    .metric strong{font-size:22px; display:block}
+    .metric span{color:var(--muted); font-size:13px}
+    .donate{
+      position:relative;
+      border:1px solid rgba(94,234,212,.25);
+      background: linear-gradient(180deg, rgba(94,234,212,.10), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      padding:18px;
+    }
+    .donate .row{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .fine{font-size:12px; color:var(--muted); line-height:1.55}
+    .footer{
+      border-top:1px solid var(--border);
+      padding:24px 0 40px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .float{
+      position:fixed; right:18px; bottom:18px; z-index:60;
+      display:flex; flex-direction:column; gap:10px;
+      align-items:flex-end;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:12px 14px; border-radius:16px;
+      box-shadow: var(--shadow);
+      border:1px solid var(--border);
+      background: rgba(7,10,20,.75);
+      backdrop-filter: blur(10px);
+      text-decoration:none;
+      font-weight:700;
+    }
+    .chip .dot{width:10px; height:10px; border-radius:50%; background:var(--accent);}
+    .chip.secondary .dot{background:var(--accent2);}
+    .hide{display:none}
+    .hr{height:1px; background:var(--border); margin:12px 0}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      outline:none;
+    }
+    textarea{min-height:110px; resize:vertical}
+    label{font-size:12px; color:var(--muted); display:block; margin:10px 0 6px}
+    .note{
+      border-left: 3px solid rgba(96,165,250,.7);
+      padding:10px 12px;
+      background: rgba(96,165,250,.08);
+      border-radius: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap">
+      <div class="inner">
+        <a class="brand" href="#inicio" aria-label="Inicio">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <strong>Colonias Escolares Domingo Villalobos</strong>
+            <span>Desde 1911 — Las Cruces, V Región</span>
+          </div>
+        </a>
+
+        <nav class="links" aria-label="Navegación">
+          <a href="#historias">Historias</a>
+          <a href="#quienes">Quiénes somos</a>
+          <a href="#hoy">Qué estamos haciendo</a>
+          <a href="#ayudar">Cómo puedes ayudar</a>
+          <a href="#contacto">Contacto</a>
+          <a class="btn primary" href="#ayudar">Donar</a>
+        </nav>
+
+        <a class="btn primary" href="#ayudar">Donar</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="inicio" class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <section class="hcard">
+          <div class="kicker">Ayuda en tiempos de crisis <span aria-hidden="true">•</span> <strong>Transparencia + Impacto</strong></div>
+          <h1>Un descanso que protege derechos: educación, recreación y apoyo urgente.</h1>
+          <p class="lead">
+            Organizamos colonias escolares en vacaciones de invierno y verano, y durante el año impulsamos actividades culturales y recreativas.
+            Cuando hay crisis, nos adaptamos para apoyar conectividad, alimentación y abrigo en familias y escuelas.
+          </p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+            <a class="btn primary" href="#ayudar">Quiero donar</a>
+            <a class="btn" href="#hoy">Ver acciones actuales</a>
+            <a class="btn danger" href="#contacto">Necesito ayuda / contacto</a>
+          </div>
+
+          <div class="badges">
+            <div class="badge">+100 años de experiencia (1911)</div>
+            <div class="badge">Niños, niñas y jóvenes en vulneración</div>
+            <div class="badge">Operación flexible: colonias + apoyo social</div>
+          </div>
+        </section>
+
+        <aside class="hcard">
+          <h2 style="margin:0 0 8px; font-size:18px">Tu aporte se transforma en acciones concretas</h2>
+          <p class="fine">
+            *Edita estos montos según tu realidad.* La lógica es “con $X pasa Y” para aumentar donaciones.
+          </p>
+
+          <div class="impact" style="margin-top:12px">
+            <div class="metric">
+              <strong>$10.000</strong>
+              <span>Apoya conectividad (datos/recargas) para un estudiante</span>
+            </div>
+            <div class="metric">
+              <strong>$25.000</strong>
+              <span>Aporta a canasta de alimentos no perecibles</span>
+            </div>
+            <div class="metric">
+              <strong>$50.000</strong>
+              <span>Financia abrigo + ropa de cama/saco de dormir</span>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="donate">
+            <h3 style="margin:0 0 6px">Donación rápida</h3>
+            <div class="row">
+              <!-- Reemplaza estos links por Webpay/Flow/Donar Online si lo implementas -->
+              <a class="btn primary" href="#ayudar">Donación mensual</a>
+              <a class="btn" href="#ayudar">Donación única</a>
+            </div>
+            <p class="fine" style="margin:10px 0 0">
+              Consejo benchmark: habilita pago con tarjeta (Webpay/Flow/MercadoPago) + recibo automático por email.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- HISTORIAS -->
+  <section id="historias" class="section">
+    <div class="wrap">
+      <h2>Historias</h2>
+      <p>
+        Una historia corta + un dato verificable convierte mucho mejor que texto largo. Aquí van 3 “tarjetas” editables.
+      </p>
+
+      <div class="cols">
+        <article class="card">
+          <h3>Conectividad para continuar el año escolar</h3>
+          <p>Apoyamos a familias sin acceso estable a Internet para que niños y niñas mantengan continuidad educativa.</p>
+        </article>
+        <article class="card">
+          <h3>Alimentos y abrigo en semanas críticas</h3>
+          <p>Coordinamos campañas con escuelas, vecinos y redes locales para cubrir urgencias: comida y abrigo.</p>
+        </article>
+        <article class="card">
+          <h3>Colonias escolares: descanso con dignidad</h3>
+          <p>En vacaciones, las colonias ofrecen recreación, aprendizaje y seguridad en un entorno cuidado.</p>
+        </article>
+      </div>
+
+      <div class="note" style="margin-top:14px">
+        Tip benchmark: agrega 1 foto por historia + 1 cifra (número de familias, kits, recargas, etc.) + fecha.
+        Eso eleva confianza y donaciones.
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIÉNES SOMOS -->
+  <section id="quienes" class="section">
+    <div class="wrap">
+      <h2>¿Quiénes somos y qué hacemos?</h2>
+      <p>
+        La Corporación Colonias Escolares Domingo Villalobos es una institución que desde 1911 organiza Colonias Escolares
+        en vacaciones de invierno y verano para niños, niñas y jóvenes en situación de vulneración y discriminación.
+        Durante el año gestiona actividades recreativas y culturales, incluyendo visitas didácticas al casco histórico de Santiago.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Misión</h3>
+          <p>Proteger derechos y bienestar a través de descanso, aprendizaje y redes de apoyo en momentos críticos.</p>
+        </div>
+        <div class="card">
+          <h3>Territorio</h3>
+          <p>Las Cruces (V Región) y actividades en Santiago y Región Metropolitana (según campañas).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ ESTAMOS HACIENDO HOY -->
+  <section id="hoy" class="section">
+    <div class="wrap">
+      <h2>Qué estamos haciendo hoy</h2>
+      <p>
+        En crisis (sanitaria/social), redirigimos esfuerzos para apoyar necesidades urgentes: conectividad, alimentos, abrigo y redes comunitarias.
+      </p>
+
+      <div class="cols">
+        <div class="card">
+          <h3>Campañas de conectividad</h3>
+          <p>Internet como herramienta educativa y de acceso a apoyo institucional y gubernamental.</p>
+        </div>
+        <div class="card">
+          <h3>Apoyo a escuelas y familias</h3>
+          <p>Respuesta rápida frente a desempleo, enfermedad, pobreza y escasez de recursos.</p>
+        </div>
+        <div class="card">
+          <h3>Redes locales</h3>
+          <p>Coordinación con vecinos y ollas comunes en Santiago y San Antonio (según demanda).</p>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:14px">
+        Punto crítico: aquí conviene poner un “tablero” simple con 3 números del mes (ej.: familias apoyadas / kits entregados / recargas).
+        Si no hay métricas, cuesta escalar donaciones.
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO PUEDES AYUDAR -->
+  <section id="ayudar" class="section">
+    <div class="wrap">
+      <h2>Cómo puedes ayudar</h2>
+      <p>
+        Elige una forma de aportar. Ideal: habilitar donación con tarjeta + donación mensual. Mientras tanto, puedes usar transferencia y donaciones en especies.
+      </p>
+
+      <div class="cols">
+        <!-- ESPECIES -->
+        <div class="card">
+          <h3>Elementos de primera necesidad</h3>
+          <ul class="list">
+            <li>Alimentos no perecibles</li>
+            <li>Ropa de invierno en buen estado</li>
+            <li>Ropa de cama y sacos de dormir en buen estado</li>
+          </ul>
+          <div style="margin-top:12px">
+            <a class="btn" href="#contacto">Coordinar entrega</a>
+          </div>
+        </div>
+
+        <!-- DINERO -->
+        <div class="card">
+          <h3>Colaboración en dinero (transferencia)</h3>
+          <p class="fine" style="margin:0 0 10px">
+            *Reemplaza estos datos por los definitivos y evita correos personales si puedes (mejora confianza).*
+          </p>
+          <div class="fine" style="line-height:1.8">
+            <strong>Corporación:</strong> Corporación Colonias Escolares Domingo Villalobos<br/>
+            <strong>RUT:</strong> 70.556.500-7<br/>
+            <strong>Banco:</strong> BCI<br/>
+            <strong>Cuenta Corriente:</strong> 61.268.879<br/>
+            <strong>Email comprobantes:</strong> mauriciolilloromero@gmail.com
+          </div>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+            <button class="btn primary" onclick="copyTransfer()">Copiar datos</button>
+            <a class="btn" href="#contacto">Enviar comprobante</a>
+          </div>
+        </div>
+
+        <!-- MENSUAL / ONLINE -->
+        <div class="donate">
+          <h3 style="margin:0 0 8px">Donación mensual (recomendado)</h3>
+          <p class="fine">
+            Benchmark: la mayoría de ONGs crece con donantes recurrentes. Si implementas Webpay/Flow/MercadoPago, pon aquí el link.
+          </p>
+          <div class="row">
+            <a class="btn primary" href="#" onclick="alert('Aquí va el link a pago con tarjeta (Webpay/Flow/MercadoPago).')">Donar con tarjeta</a>
+            <a class="btn" href="#" onclick="alert('Aquí va el link a formulario de donación mensual + recibo.')">Hacerme socio mensual</a>
+          </div>
+          <p class="fine" style="margin:10px 0 0">
+            Si quieres, te dejo listo el texto y estructura para integrar Flow/Webpay cuando me digas cuál usarás.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSPARENCIA -->
+  <section class="section">
+    <div class="wrap">
+      <h2>Transparencia</h2>
+      <p>
+        Esto aumenta conversión. Aunque sea simple, publica: metas, resultados, y un cierre mensual.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>¿En qué se usa tu aporte?</h3>
+          <p>Conectividad, canastas, abrigo, logística y gestión de actividades educativas/recreativas.</p>
+        </div>
+        <div class="card">
+          <h3>Reportes</h3>
+          <p>Sube un PDF mensual/trimestral (1 página) con cifras y fotos. Puedo ayudarte a armar una plantilla.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="section">
+    <div class="wrap">
+      <h2>Contacto</h2>
+      <p>Escríbenos para coordinar donaciones en especies, confirmar campañas, o resolver dudas.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Datos de contacto</h3>
+          <div class="fine" style="line-height:1.8">
+            <strong>Director Administrador:</strong> Sr. Edgardo Rivera V.<br/>
+            <strong>Teléfono:</strong> +56 9 9537 8758<br/>
+            <strong>Email:</strong> edgardorivera7@gmail.com<br/>
+            <strong>Dirección:</strong> Marcoleta 659, 6° piso, Santiago
+          </div>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn primary" id="waBtn" href="#" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn" href="mailto:edgardorivera7@gmail.com">Enviar email</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Formulario</h3>
+          <form id="contactForm">
+            <label for="name">Nombre</label>
+            <input id="name" name="name" placeholder="Tu nombre" required />
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="tu@email.com" required />
+
+            <label for="subject">Asunto</label>
+            <input id="subject" name="subject" placeholder="Donación / campaña / consulta" required />
+
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
+
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+              <button class="btn primary" type="submit">Enviar</button>
+              <button class="btn" type="button" onclick="prefillDonationMsg()">Quiero donar</button>
+            </div>
+
+            <p class="fine" style="margin-top:10px">
+              Este formulario abre tu correo (no guarda datos). Si lo quieres “real” con envío y base de datos, se conecta a Formspree/Google Forms/Backend.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center">
+        <span>© <span id="year"></span> Corporación Colonias Escolares Domingo Villalobos</span>
+        <span>Hecho para convertir donaciones: simple, claro, medible.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botones flotantes -->
+  <div class="float" aria-label="Acciones rápidas">
+    <a class="chip" href="#ayudar"><span class="dot"></span> Donar</a>
+    <a class="chip secondary" id="waChip" href="#" target="_blank" rel="noopener"><span class="dot"></span> WhatsApp</a>
+  </div>
+
+  <script>
+    // === CONFIG: edita aquí ===
+    const WHATSAPP_NUMBER = "56995378758"; // sin +, sin espacios
+    const WHATSAPP_TEXT = encodeURIComponent("Hola, quiero apoyar a la Corporación. ¿Cómo puedo donar o coordinar entrega de artículos?");
+
+    // Inicialización
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_TEXT}`;
+    document.getElementById("waBtn").href = waLink;
+    document.getElementById("waChip").href = waLink;
+
+    // Copiar datos de transferencia
+    function copyTransfer(){
+      const txt =
+`Corporación Colonias Escolares Domingo Villalobos
+RUT: 70.556.500-7
+Banco: BCI
+Cuenta Corriente: 61.268.879
+Email comprobantes: mauriciolilloromero@gmail.com`;
+      navigator.clipboard.writeText(txt).then(()=>{
+        alert("Datos copiados. ¡Gracias por apoyar!");
+      }).catch(()=>{
+        alert("No pude copiar automáticamente. Copia manualmente desde la sección.");
+      });
+    }
+
+    // Prefill mensaje donación
+    function prefillDonationMsg(){
+      document.getElementById("subject").value = "Quiero donar";
+      document.getElementById("message").value =
+        "Hola, quiero apoyar a la Corporación.\n" +
+        "- Tipo de aporte: (mensual / único / especies)\n" +
+        "- Monto o artículos:\n" +
+        "- Comuna/ciudad:\n" +
+        "Gracias.";
+      document.getElementById("name").focus();
+    }
+
+    // Formulario: abre mailto (simple, sin backend)
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = encodeURIComponent(document.getElementById("name").value.trim());
+      const email = encodeURIComponent(document.getElementById("email").value.trim());
+      const subject = encodeURIComponent(document.getElementById("subject").value.trim());
+      const message = encodeURIComponent(document.getElementById("message").value.trim());
+
+      const to = "edgardorivera7@gmail.com";
+      const body =
+`Nombre: ${decodeURIComponent(name)}
+Email: ${decodeURIComponent(email)}
+
+${decodeURIComponent(message)}`;
+
+      window.location.href = `mailto:${to}?subject=${subject}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
